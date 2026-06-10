@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Check saved theme preference, default to light (no class)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            // Persist the choice
+            if (document.body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+
     // --- Header Background Transition on Scroll ---
     const header = document.getElementById('header');
     
